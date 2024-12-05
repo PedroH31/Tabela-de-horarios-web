@@ -58,7 +58,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "api",
     "rest_framework",
+    "rest_framework.authtoken",
     "corsheaders",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
 ]
 
 MIDDLEWARE = [
@@ -70,6 +78,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "corsheaders.middleware.CorsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -149,5 +158,28 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost",
     "http://127.0.0.1",
     "http://0.0.0.0",
+    "http://localhost:3000",
+    "http://localhost:5173",
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
+
+
 CORS_ALLOW_CREDENTIALS = True
+
+SESSION_COOKIE_SAMESITE = "None"
+SESSION_COOKIE_SECURE = True
+
+CSRF_COOKIE_SAMESITE = "None"
+CSRF_COOKIE_SECURE = True
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend"
+)
+
+SITE_ID = 4

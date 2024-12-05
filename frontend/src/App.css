@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #72a8e5;
+}
+
+/* Login e Registro*/
+
+.login-container {
+    
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    width: 16%;
+    margin: 15em auto;
+    padding: 2em 1em;
+    gap: 0.5em;
+    align-items: center;
+    border-radius: 6px;
+    color: rgba(52, 58, 64, 1);
+    
+}
+
+.login-form input {
+   margin-top: 0.5em;
+   width: 90%;
+   padding: 0.5em 0
+}
+
+.login-form button {
+    background-color: rgba(0, 123, 255, 1);
+    color: #FFFF;
+    font-weight: 800;
+    border: none;
+    border-radius: 20px;
+    padding: 0.6em 2em;
+    margin-top: 0.5em
+}
+
+.login-titulos {
+    
+}
+
+.login-link {
+    color: rgba(0, 97, 143, 1);
+    text-decoration: none;
+    margin-top: 0.7em;
+}
