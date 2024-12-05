@@ -5,6 +5,7 @@ import Register from "./pages/Register"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 function Logout() {
   localStorage.clear()
@@ -18,21 +19,26 @@ function RegisterAndLogout() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<RegisterAndLogout />} />
-        <Route path="*" element={<NotFound />}/>
-      </Routes>
-    </BrowserRouter>
+    <GoogleOAuthProvider clientId="186703630780-ugg5qg0siql666tnu3q3tlt1pl29fo2p.apps.googleusercontent.com">
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+            <Route path="/login" element={
+                <Login />
+              } />
+            <Route path="/register" element={<RegisterAndLogout />} />
+
+          <Route path="*" element={<NotFound />}/>
+        </Routes>
+      </BrowserRouter>
+    </GoogleOAuthProvider>
   )
 }
 
