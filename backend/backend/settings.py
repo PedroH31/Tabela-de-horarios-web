@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "api",
     "rest_framework",
     "rest_framework.authtoken",
+    "rest_framework_simplejwt",
     "corsheaders",
     "django.contrib.sites",
     "allauth",
@@ -181,5 +182,22 @@ AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend"
 )
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '186703630780-ugg5qg0siql666tnu3q3tlt1pl29fo2p.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 
 SITE_ID = 4
