@@ -7,13 +7,30 @@ import jwtDecode from "jwt-decode"
 function Login() {
 
     const googleResponse = async (response) => {
-
         const token = response.credential || response.accessToken;
-    
+
         if (token) {
-            const googleResponse = await googleLogin(token);
-            console.log(googleResponse); 
-            console.log(response); 
+            try {
+                const backendResponse = await fetch("http://localhost:8000/api/google-login/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ token }),
+                });
+
+                if (!backendResponse.ok) {
+                    console.error("Backend returned an error:", backendResponse.status);
+                    const errorData = await backendResponse.json();
+                    console.error("Error details:", errorData);
+                    return;
+                }
+
+                const data = await backendResponse.json();
+                console.log("Backend response:", data);
+            } catch (error) {
+                console.error("Error during fetch:", error);
+            }
         } else {
             console.error("No token received from Google response");
         }
