@@ -1,10 +1,10 @@
-import {useState, useEffect} from "react"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import { GoogleLogin } from "@react-oauth/google"
-import googleLogin from '../services/googleLogin'
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants"
 import jwtDecode from "jwt-decode"
 
 function Login() {
+    const navigate = useNavigate()
 
     const googleResponse = async (response) => {
         const token = response.credential || response.accessToken;
@@ -21,15 +21,22 @@ function Login() {
 
                 if (!backendResponse.ok) {
                     console.error("Backend returned an error:", backendResponse.status);
-                    const errorData = await backendResponse.json();
-                    console.error("Error details:", errorData);
+                    const errorData = await backendResponse.json()
+                    console.error("Error details:", errorData)
                     return;
                 }
 
-                const data = await backendResponse.json();
-                console.log("Backend response:", data);
+                const data = await backendResponse.json()
+
+                if (data.access && data.refresh) {
+                    localStorage.setItem(ACCESS_TOKEN, data.access)
+                    localStorage.setItem(REFRESH_TOKEN, data.refresh)
+                    console.log(data.profile_picture)
+                    navigate("/", { state: { profilePicture: data.profile_picture } })
+                }
+
             } catch (error) {
-                console.error("Error during fetch:", error);
+                console.error("Error during fetch:", error)
             }
         } else {
             console.error("No token received from Google response");

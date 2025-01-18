@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+}
+
+h1, h2, h3 {
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #72a8e5;
+}
+
+/* utils */
+
+.align-center {
+    display: flex;
+    align-items: center;
+}
+
+.column-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.max-width-container {
+    width: 100%;
+}
+
+/* Login and register*/
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    width: 16%;
+    margin: 15em auto;
+    padding: 2em 1em;
+    gap: 0.5em;
+    align-items: center;
+    border-radius: 6px;
+    color: rgba(52, 58, 64, 1);
+    
+}
+
+.login-form input {
+   margin-top: 0.5em;
+   width: 90%;
+   padding: 0.5em 0
+}
+
+.login-form button {
+    background-color: rgba(0, 123, 255, 1);
+    color: #FFFF;
+    font-weight: 800;
+    border: none;
+    border-radius: 20px;
+    padding: 0.6em 2em;
+    margin-top: 0.5em
+}
+
+.login-link {
+    color: rgba(0, 97, 143, 1);
+    text-decoration: none;
+    margin-top: 0.7em;
+}
+
+/* Navigation */
+
+.return-btn {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 0.8em;
+}
+
+.return-btn:hover {
+    cursor: pointer;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8em;
+    height: calc(8vh);
+    width: 100%;
+    border-bottom: 1px solid #7A7A7A;
+}
+
+/* profile */
+
+.profile-pic {
+    border-radius: 50%;
+    height: 50px
+}
+
+.profile-pic:hover {
+    cursor: pointer;
+}
+
+/* general-buttons */
+
+.search-btn {
+    background-color: #72a8e5;
+    border: none;
+    border-radius: 5px;
+    padding: 0.16em 0.7em
+}
+
+.add-btn {
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    background-color: #FFFF;
+    color: #463f3a;
+    margin-left: auto;
+}
+
+.add-btn:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.btn-icon {
+    width: 25px;
+    margin-right: 0.5em
+}
+
+/* search */
+
+.search-container {
+    margin: 2.2em 0 1em
+}
+
+.search-bar {
+    padding: 0.5em 2em;
+    border-radius: 6px;
+    border: 1px solid #bcb8b1;
+    margin-right: 0.3em
+}
+
+@media (min-width: 1441px) {
+    body {
+        font-size: 18px
+    }
+
+}

@@ -28,6 +28,7 @@ class GoogleLogin(APIView):
 
             email = id_info.get('email')
             name = id_info.get('name')
+            profile_picture = id_info.get('picture')
 
             user, created = User.objects.get_or_create(
                 email=email,
@@ -41,6 +42,7 @@ class GoogleLogin(APIView):
                 "message": "Login successful",
                 "refresh": str(refresh),
                 "access": str(refresh.access_token),
+                "profile_picture": profile_picture
             })
 
         except ValueError as e:
@@ -56,4 +58,3 @@ class UserDetailsView(APIView):
             'username': user.username,
             'email': user.email,
         })
-
