@@ -1,0 +1,61 @@
+/* Home */
+
+.home-container {
+    display: flex;
+    flex-direction: row;
+    background-color: #FFFF;
+}
+
+/* Menu */
+
+.menu-container {
+    background-color: #343434;
+    height: calc(100vh);
+}
+
+.menu-logo {
+    width: 100px;
+    margin: 1.5em 2.5em 0.8em; 
+
+}
+
+.menu-btn {
+    text-decoration: none;
+    color: #FFFF;
+    margin-left: 0.5em;
+}
+
+.menu-btn:hover {
+    text-decoration: underline;
+}
+
+.menu-icon {
+    width: 25px;
+}
+
+.menu-nav {
+    font-size: 1rem;
+    padding: 0 5em 0 1.5em;
+
+}
+
+.menu-nav div {
+    padding-top: 0.8em;
+
+}
+
+.horizontal-line {
+    height: 2px;
+    width: 90%;
+    border: none;
+    background-color: #FFFF
+}
+
+/* content */
+
+.content-container {
+    width: 100%;
+    padding: 3.6em 2.5em;
+}
+
+
