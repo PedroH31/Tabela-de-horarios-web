@@ -31,8 +31,8 @@ function Login() {
                 if (data.access && data.refresh) {
                     localStorage.setItem(ACCESS_TOKEN, data.access)
                     localStorage.setItem(REFRESH_TOKEN, data.refresh)
-                    console.log(data.profile_picture)
-                    navigate("/", { state: { profilePicture: data.profile_picture } })
+                    localStorage.setItem("profilePicture", data.profile_picture)
+                    navigate("/")
                 }
 
             } catch (error) {

@@ -1,6 +1,14 @@
 version: '3.8'
 
 services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
   backend:
     volumes:
       - static:/static
@@ -22,7 +30,7 @@ services:
       - static:/static
       - frontend:/var/www/frontend
     ports:
-      - "80:80"
+      - "2011:80"
     depends_on:
       - backend
       - frontend
