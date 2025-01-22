@@ -11,3 +11,4 @@ pytz
 sqlparse
 psycopg2-binary
 python-dotenv
+dj_rest_auth
