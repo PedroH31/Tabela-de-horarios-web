@@ -1,12 +1,16 @@
-import {useState} from "react"
-import {Link, useLocation} from "react-router-dom"
-import Alocacoes from "./Alocacoes"
-import "../styles/Home.css"
+import {useState, useEffect} from "react"
+import {Link, Outlet} from "react-router-dom"
+import "../styles/Layout.css"
 
-function Home() {
-    const location = useLocation()
-    const { profilePicture } = location.state || {} 
-    const [path, setPath] = useState("Alocacoes")
+function Layout() {
+    const [profilePicture, setProfilePicture] = useState(null)
+
+    useEffect(() => {
+        const storedPicture = localStorage.getItem("profilePicture");
+        if (storedPicture) {
+          setProfilePicture(storedPicture);
+        }
+      }, [])
 
     return (
         <>
@@ -18,7 +22,7 @@ function Home() {
                     <div className="menu-nav">
                         <div className="align-center">
                             <img src="./src/images/losango.png" className="menu-icon"/>
-                            <Link className="menu-btn">Alocações</Link>
+                            <Link to="/" className="menu-btn">Alocações</Link>
                         </div>
                         <div className="align-center">
                             <img src="./src/images/losango.png" className="menu-icon"/>
@@ -35,12 +39,10 @@ function Home() {
                         <button className="return-btn">
                             <img src="/src/images/left-arrow.png" width="25px" height="25px" />
                         </button>
-                        { profilePicture && <img src={profilePicture} className="profile-pic" referrerpolicy="no-referrer"/> }
+                        { profilePicture && <img src={profilePicture} className="profile-pic" referrerPolicy="no-referrer"/> }
                     </div>
                     <section className="content-container column-container">
-
-                        {path === "Alocacoes" && <Alocacoes />}
-
+                        <Outlet />
                     </section>
                 </div>
             </main>
@@ -48,4 +50,4 @@ function Home() {
     )
 }
 
-export default Home
+export default Layout

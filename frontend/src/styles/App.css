@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-h1, h2, h3 {
+h1, h2, h3, p {
     margin: 0;
 }
 
@@ -22,6 +22,11 @@ body {
 .column-container {
     display: flex;
     flex-direction: column;
+}
+
+.row-container {
+    display: flex;
+    flex-direction: row;
 }
 
 .max-width-container {
@@ -121,6 +126,22 @@ body {
 }
 
 .add-btn:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.alocation-btn {
+    font-family: sans-serif;
+    color: #463f3a;
+    font-weight: 600;
+    border: none;
+    background-color: #e9ecef;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-left: 1.2em;
+}
+
+.alocation-btn:hover {
     cursor: pointer;
     text-decoration: underline;
 }

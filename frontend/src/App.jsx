@@ -2,10 +2,12 @@ import react from "react"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
-import Home from "./pages/Home"
+import Layout from "./pages/Layout"
+import Horarios from "./pages/Horarios"
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
 import { GoogleOAuthProvider } from '@react-oauth/google'
+import TabelaDeHorarios from "./pages/TabelaDeHorarios"
 
 function Logout() {
   localStorage.clear()
@@ -26,14 +28,20 @@ function App() {
             path="/"
             element={
               <ProtectedRoute>
-                <Home />
+                <Layout />
               </ProtectedRoute>
-            }
-          />
-            <Route path="/login" element={
-                <Login />
-              } />
-            <Route path="/register" element={<RegisterAndLogout />} />
+            }>
+
+            <Route index element={<Horarios />} />
+            
+            <Route path="/tabela-de-horarios" element={<TabelaDeHorarios />}/>
+          </Route>
+
+          {/* Public routes */}
+
+          <Route path="/login" element={<Login />}/>
+          <Route path="/register" element={<RegisterAndLogout />} />
+          
 
           <Route path="*" element={<NotFound />}/>
         </Routes>

@@ -40,8 +40,6 @@ function ProtectedRoute({children}) {
         const now = Date.now() / 1000
 
         if (tokenExpiration < now) {
-            localStorage.removeItem(ACCESS_TOKEN);
-            localStorage.removeItem(REFRESH_TOKEN);
             await refreshToken()
         } else {
             setIsAuthorized(true)
