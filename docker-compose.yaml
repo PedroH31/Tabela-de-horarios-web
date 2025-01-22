@@ -30,7 +30,7 @@ services:
       - static:/static
       - frontend:/var/www/frontend
     ports:
-      - "2022:80"
+      - "2011:80"
     depends_on:
       - backend
       - frontend
