@@ -5,8 +5,8 @@ RUN npm install
 
 COPY . . 
 
-RUN npm run build
+ENV VITE_PORT=8080
 
-RUN chmod -R 755 /frontend/dist
+RUN npm run build
 
 CMD ["npm", "run", "build", "dev", "--", "--host"]
