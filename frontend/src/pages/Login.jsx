@@ -11,7 +11,7 @@ function Login() {
 
         if (token) {
             try {
-                const backendResponse = await fetch("http://localhost:8000/api/google-login/", {
+                const backendResponse = await fetch("http://localhost/api/google-login/", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
