@@ -5,7 +5,7 @@ RUN npm install
 
 COPY . . 
 
-ENV VITE_PORT=8080
+ENV VITE_PORT=5173
 
 RUN npm run build
 

@@ -35,7 +35,6 @@ services:
     depends_on:
       - backend
       - frontend
-    entrypoint: /bin/sh -c "rm -rf /var/www/frontend/* && cp -r /frontend/dist/* /var/www/frontend/ && nginx -g 'daemon off;'"
 
 volumes:
   frontend_dist:
