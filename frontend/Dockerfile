@@ -5,8 +5,6 @@ RUN npm install
 
 COPY . . 
 
-ENV VITE_PORT=5173
-
 RUN npm run build
 
-CMD ["npm", "run", "build", "dev", "--", "--host"]
+CMD ["npm", "run", "dev"]
