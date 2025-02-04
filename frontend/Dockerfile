@@ -7,4 +7,6 @@ COPY . .
 
 RUN npm run build
 
+RUN chmod -R 755 /frontend/build
+
 CMD ["npm", "run", "dev", "--", "--host"]
