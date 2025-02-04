@@ -20,7 +20,7 @@ services:
       context: ./frontend
     command: npm run dev -- --host #host option for vite
     volumes:
-      - frontend_build:/frontend/build
+      - frontend_build:/frontend/dist #normalmente é build, mas o vite coloca dentro de dist por padrão
     ports:
       - "5173:5173"
   nginx:
