@@ -5,11 +5,6 @@ RUN npm install
 
 COPY . . 
 
-RUN mkdir -p /frontend/build
-
 RUN npm run build
 
-
-RUN chmod -R 755 /frontend/build
-
-CMD ["npm", "run", "dev", "--", "--host"]
+CMD ["npm", "run", "build", "dev", "--", "--host"]
