@@ -10,7 +10,7 @@ export default function Horarios() {
         <div className="individual-alocation-container row-container align-center" key={alocation.id}>
             <p>ECT 2024.1 v1</p>
             <div>
-                <Link to="/tabela-de-horarios" state={{alocation}}className="alocation-btn">Visualizar</Link>
+                <Link to="/tabela-de-horarios" state={{distribuicao: alocation.distribuicao}} className="alocation-btn">Visualizar</Link>
                 <button className="alocation-btn">Remover</button>
             </div>
         </div>
@@ -20,7 +20,7 @@ export default function Horarios() {
         <>
             <main className="horarios-container">
                 <div>
-                    <h1>Alocações</h1>
+                    <h1>Horários</h1>
                     <div className="align-center search-container">
                         <input className="search-bar"/>
                         <button className="search-btn"><img src="./src/images/lupa.png" width="25px"/></button>

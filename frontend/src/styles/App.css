@@ -19,6 +19,11 @@ body {
     align-items: center;
 }
 
+.justify-center {
+    display: flex;
+    justify-content: center;
+}
+
 .column-container {
     display: flex;
     flex-direction: column;
