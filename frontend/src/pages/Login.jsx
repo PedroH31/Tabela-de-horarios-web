@@ -7,11 +7,12 @@ function Login() {
     const navigate = useNavigate()
 
     const googleResponse = async (response) => {
-        const token = response.credential || response.accessToken;
+        const token = response.credential || response.accessToken
+        const apiUrl = import.meta.env.REACT_API_URL
 
         if (token) {
             try {
-                const backendResponse = await fetch("http://localhost/api/google-login/", {
+                const backendResponse = await fetch(`http://127.0.0.1:8000/api/google-login/`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
