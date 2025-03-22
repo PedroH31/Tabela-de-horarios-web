@@ -5,6 +5,7 @@
     font-size: 1.2rem;
     max-width: 39.3em;
     border: 3px solid black;
+    margin: 0 1em .5em 0;
 }
 
 .table-title {
@@ -58,4 +59,15 @@
 
 .curricular-component:hover {
     cursor: pointer;
+}
+
+/* toolbar */
+
+.toolbar-container {
+    background-color: #7e8d85;
+    border-radius: 5px;
+    border: 2px solid black;
+    padding: .8em;
+    width: 30%;
+    margin-bottom: .5em;
 }

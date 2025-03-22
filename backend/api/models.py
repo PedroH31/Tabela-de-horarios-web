@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Group, PermissionsMixin, Permission
+from django.contrib.auth import get_user_model
 from django.db import models
 
 class UserManager(BaseUserManager):
@@ -42,3 +43,63 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+
+class GradeCurricular(models.Model):
+    nome = models.CharField(max_length=255)
+    descricao = models.TextField(blank=True, null=True)
+    semestre_vigencia = models.CharField(max_length=10) 
+    usuario = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    pode_alterar = models.ManyToManyField(User, related_name="can_edit_grade_curricular", blank=True)
+    pode_compartilhar = models.ManyToManyField(User, related_name="can_share_grade_curricular", blank=True)
+
+    def __str__(self):
+        return f"{self.nome} ({self.semestre_vigencia})"
+
+# registro dentro da grade
+class ComponenteCurricular(models.Model):
+    grade_curricular = models.ForeignKey(GradeCurricular, on_delete=models.CASCADE)
+    codigo = models.CharField(max_length=50, unique=True)
+    nome = models.CharField(max_length=255)
+    abreviatura = models.CharField(max_length=50, blank=True, null=True)
+    descricao = models.TextField(blank=True, null=True)
+    periodo_diurno = models.BooleanField(default=False)
+    periodo_noturno = models.BooleanField(default=False)
+    ch_teorica = models.IntegerField(default=0) 
+    ch_pratica = models.IntegerField(default=0)  
+
+    def __str__(self):
+        return f"{self.codigo} - {self.nome}"
+
+
+class Horario(models.Model):
+    nome = models.CharField(max_length=255)
+    descricao = models.TextField(blank=True, null=True)
+    semestre = models.CharField(max_length=10)  
+    grade_curricular = models.ForeignKey(GradeCurricular, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    pode_alterar = models.ManyToManyField(User, related_name="can_edit_horario", blank=True)
+    pode_compartilhar = models.ManyToManyField(User, related_name="can_share_horario", blank=True)
+
+    def __str__(self):
+        return f"{self.nome} ({self.semestre})"
+
+
+class Alocacao(models.Model):
+    TIPO_CHOICES = [
+        (1, "Turmas Fixas"),
+        (2, "Vagas Fixas"),
+    ]
+
+    usuario = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    horario = models.ForeignKey(Horario, on_delete=models.CASCADE)
+    nome = models.CharField(max_length=255)
+    descricao = models.TextField(blank=True, null=True)
+    tipo = models.IntegerField(choices=TIPO_CHOICES)
+    parametros = models.JSONField(default=dict)  
+    alocacao = models.JSONField(default=dict)
+    pode_alterar = models.ManyToManyField(User, related_name="can_edit_alocacao", blank=True)
+    pode_compartilhar = models.ManyToManyField(User, related_name="can_share_alocacao", blank=True)
+
+    def __str__(self):
+        return f"{self.nome} - {self.get_tipo_display()}"

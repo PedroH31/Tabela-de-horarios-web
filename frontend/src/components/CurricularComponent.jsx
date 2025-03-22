@@ -1,22 +1,24 @@
-export default function CurricularComponent(props) {
-    const { turma, componente, local, tamanho, cellKey } = props
+import { useContext } from "react"
+import { ScheduleContext } from "../pages/SchedulesTable"
 
-    function handleDragStart(e, cellKey, turma, componente, local, tamanho) {
-        const draggedData = JSON.stringify({ cellKey, turma, componente, local, tamanho })
+export default function CurricularComponent(props) {
+    const { turma, componente, local, tamanho, cellKey, periodo } = props
+    const { editMode } = useContext(ScheduleContext)
+
+    function handleDragStart(e, cellKey, turma, componente, local, tamanho, periodo) {
+        const draggedData = JSON.stringify({ cellKey, turma, componente, local, tamanho, periodo })
         e.dataTransfer.setData("application/json", draggedData)
     }
 
-    function handleOnDrop(e) {
-
-    }
-
     return (
+        
         <div 
+        // adicionar local da turma 
             className="curricular-component" 
-            draggable
-            onDragStart={(e) => handleDragStart(e, cellKey, turma, componente, local, tamanho)}
+            draggable={editMode}
+            onDragStart={(e) => handleDragStart(e, cellKey, turma, componente, local, tamanho, periodo)}
         >
-            <p>{componente}</p>
+            <p>{componente}({local})</p>
 
         </div>
     )
