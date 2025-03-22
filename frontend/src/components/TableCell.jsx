@@ -1,16 +1,13 @@
 import CurricularComponent from "./CurricularComponent"
-import { useState } from "react"
-import { useContext } from "react"
-import { ScheduleContext } from "../pages/TabelaDeHorarios"
+import { useState, useContext } from "react"
+import { ScheduleContext } from "../pages/SchedulesTable"
 
-export default function TableCell({ cellKey, data }) {
+export default function TableCell({ cellKey, tablePeriod, data }) {
     const [isDraggedOver, setIsDraggedOver] = useState(false)
     const { alocation, setAlocation } = useContext(ScheduleContext)
-
     const styles = isDraggedOver ?
         { border: "1.5px solid #eeef20" } :
         { border: "1.5px solid black" }
-
 
     const handleDragOver = (e) => {
         e.preventDefault()
@@ -26,35 +23,37 @@ export default function TableCell({ cellKey, data }) {
         setIsDraggedOver(false)
 
         const draggedData = JSON.parse(e.dataTransfer.getData("application/json"))
-        const { cellKey: oldCellKey, turma, componente, local, tamanho } = draggedData // lembrete: cellKey: oldCellKey está somente renomeando a variável para oldCellKey
+        const { cellKey: oldCellKey, turma, componente, local, tamanho, periodo: oldPeriodo } = draggedData
 
-        if (oldCellKey === cellKey) return
+        console.log("Before Drop:", JSON.stringify(alocation.distribuicao, null, 2));
+        
+        if (oldCellKey === cellKey && oldPeriodo === tablePeriod) return
+        
 
-        const newDistribuicao = alocation.distribuicao.map((entry) => {
-            const key = Object.keys(entry)[0]
+        const newDistribuicao = { ...alocation.distribuicao };
 
-            if (key === oldCellKey) {
-                return { [key]: entry[key]?.filter(item => item.componente !== componente) }
-            }
+        // Remove from old cell
+        newDistribuicao[oldCellKey] = newDistribuicao[oldCellKey].filter(
+          (item) => !(item.componente === componente && item.turma === turma && item.periodo === oldPeriodo)
+        );
+    
+        // Add to new cell
+        if (!newDistribuicao[cellKey]) newDistribuicao[cellKey] = [];
+        newDistribuicao[cellKey].push({
+          turma,
+          componente,
+          local,
+          tamanho,
+          periodo: tablePeriod,
+        });
 
-            if (key === cellKey) {
-                return { [key]: [...(entry[key] || []), { turma, componente, local, tamanho }] }
-            }
-
-            return entry
-        })
-
-        if (!newDistribuicao.some(entry => Object.keys(entry)[0] === cellKey)) {
-            newDistribuicao.push({ [cellKey]: [{ turma, componente, local, tamanho }] });
-        }
-
-        const cleanedDistribuicao = newDistribuicao.filter(entry => {
-            const key = Object.keys(entry)[0]
-            return entry[key].length > 0
-        })
-
-        setAlocation({ ...alocation, distribuicao: cleanedDistribuicao })
+        console.log("After Drop:", JSON.stringify(newDistribuicao, null, 2));
+        
+        setAlocation({ ...alocation, distribuicao: newDistribuicao })
+        
     }
+
+    const filteredData = data.filter((item) => item.periodo === tablePeriod)
 
     return (
         <div
@@ -64,13 +63,12 @@ export default function TableCell({ cellKey, data }) {
             onDrop={handleDrop}
             style={styles}
         >
-            {data.length > 0 ? (
-                data.map((item, index) => (
-                    <CurricularComponent
-                        key={index}
-                        cellKey={cellKey}
-                        {...item}
-                    />
+            {filteredData.length > 0 ? (
+                filteredData.map((item, index) => (
+                <CurricularComponent 
+                    key={index} 
+                    cellKey={cellKey} 
+                    {...item} />
                 ))
             ) : (
                 <div className="empty-cell"></div>

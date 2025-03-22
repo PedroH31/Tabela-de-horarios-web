@@ -32,6 +32,8 @@ body {
 .row-container {
     display: flex;
     flex-direction: row;
+    overflow: auto;
+    flex: 1 1 auto;
 }
 
 .max-width-container {
@@ -128,10 +130,10 @@ body {
     background-color: #FFFF;
     color: #463f3a;
     margin-left: auto;
+    gap: 0.4em
 }
 
 .add-btn:hover {
-    cursor: pointer;
     text-decoration: underline;
 }
 
@@ -147,13 +149,22 @@ body {
 }
 
 .alocation-btn:hover {
-    cursor: pointer;
     text-decoration: underline;
 }
 
 .btn-icon {
     width: 25px;
-    margin-right: 0.5em
+    margin: 0 auto
+}
+
+.toolbar-btn {
+    border: 2px solid black;
+    border-radius: 4px;
+    background-color: #FFFF
+}
+
+button {
+    cursor: pointer;
 }
 
 /* search */
@@ -168,6 +179,8 @@ body {
     border: 1px solid #bcb8b1;
     margin-right: 0.3em
 }
+
+/* media queries */
 
 @media (min-width: 1441px) {
     body {

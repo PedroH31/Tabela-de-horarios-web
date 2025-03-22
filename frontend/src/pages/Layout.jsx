@@ -13,40 +13,39 @@ function Layout() {
       }, [])
 
     return (
-        <>
-            <main className="home-container">
-                <div className="menu-container column-container">
-                    <img src="./src/images/losango.png" className="menu-logo"/>
+        <main className="home-container row-container">
+            <div className="menu-container column-container">
+                <img src="./src/images/losango.png" className="menu-logo"/>
 
-                    <hr className="horizontal-line"></hr>
-                    <div className="menu-nav">
-                        <div className="align-center">
-                            <img src="./src/images/losango.png" className="menu-icon"/>
-                            <Link to="/" className="menu-btn">Alocações</Link>
-                        </div>
-                        <div className="align-center">
-                            <img src="./src/images/losango.png" className="menu-icon"/>
-                            <Link className="menu-btn">Locais</Link>
-                        </div>
-                        <div className="align-center">
-                            <img src="./src/images/losango.png" className="menu-icon"/>
-                            <Link className="menu-btn">Horários</Link>
-                        </div>
+                <hr className="horizontal-line"></hr>
+                <div className="menu-nav">
+                    <div className="align-center">
+                        <img src="./src/images/losango.png" className="menu-icon"/>
+                        <Link to="/" className="menu-btn">Horarios</Link>
+                    </div>
+                    <div className="align-center">
+                        <img src="./src/images/losango.png" className="menu-icon"/>
+                        <Link className="menu-btn">Locais</Link>
+                    </div>
+                    <div className="align-center">
+                        <img src="./src/images/losango.png" className="menu-icon"/>
+                        <Link className="menu-btn">Grades</Link>
                     </div>
                 </div>
-                <div className="column-container max-width-container">
-                    <div className="navbar">
-                        <button className="return-btn">
-                            <img src="/src/images/left-arrow.png" width="25px" height="25px" />
-                        </button>
-                        { profilePicture && <img src={profilePicture} className="profile-pic" referrerPolicy="no-referrer"/> }
-                    </div>
-                    <section className="content-container column-container">
-                        <Outlet />
-                    </section>
+            </div>
+            <div className="main-container column-container max-width-container">
+                <div className="navbar">
+                    <button className="return-btn">
+                        <img src="/src/images/left-arrow.png" width="25px" height="25px" />
+                    </button>
+                    { profilePicture && <img src={profilePicture} className="profile-pic" referrerPolicy="no-referrer"/> }
                 </div>
-            </main>
-        </>
+                <section className="content-container column-container">
+                    <Outlet />
+                </section>
+            </div>
+        </main>
+
     )
 }
 

@@ -7,7 +7,7 @@ import Horarios from "./pages/Horarios"
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
 import { GoogleOAuthProvider } from '@react-oauth/google'
-import TabelaDeHorarios from "./pages/TabelaDeHorarios"
+import SchedulesTable from "./pages/SchedulesTable"
 import CurricularComponent from "./components/CurricularComponent"
 
 function Logout() {
@@ -35,7 +35,7 @@ function App() {
           {/* Protected Routes */}
           
             <Route index element={<Horarios />}/>
-            <Route path="/tabela-de-horarios" element={<TabelaDeHorarios />}/>
+            <Route path="/tabela-de-horarios" element={<SchedulesTable />}/>
             
           </Route>
 

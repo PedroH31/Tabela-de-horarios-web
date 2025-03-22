@@ -1,8 +1,6 @@
 /* Home */
 
 .home-container {
-    display: flex;
-    flex-direction: row;
     background-color: #FFFF;
 }
 
@@ -10,7 +8,10 @@
 
 .menu-container {
     background-color: #343434;
-    height: calc(100vh);
+    height: 100vh;
+    position: fixed;
+    overflow-y: auto;
+    overflow-x: auto;
 }
 
 .menu-logo {
@@ -53,9 +54,13 @@
 
 /* content */
 
+.main-container {
+    height: 100vh;
+    margin-left: 11.5em
+}
+
 .content-container {
     width: 100%;
     padding: 3.6em 2.5em;
+    
 }
-
-
