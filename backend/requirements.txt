@@ -10,6 +10,7 @@ PyJWT
 pytz
 sqlparse
 psycopg2-binary
+django-extensions
 python-dotenv
 dj_rest_auth
 requests
