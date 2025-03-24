@@ -1,5 +1,5 @@
 import logging
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -7,8 +7,8 @@ from django.http import JsonResponse
 from django.contrib.auth import get_user_model
 from google.oauth2 import id_token
 from google.auth.transport import requests
-from .serializers import UserSerializer
-from .models import User
+from .serializers import UserSerializer, GradeCurricularSerializer, ComponenteCurricularSerializer
+from .models import GradeCurricular, ComponenteCurricular, User
 
 
 logger = logging.getLogger(__name__)
@@ -58,3 +58,29 @@ class UserDetailsView(APIView):
             'username': user.username,
             'email': user.email,
         })
+
+class GradeCurricularViewSet(viewsets.ModelViewSet):
+    queryset = GradeCurricular.objects.all()
+    serializer_class = GradeCurricularSerializer
+
+    def perform_create(self, serializer):
+        user = self.request.user
+        if not isinstance(user, User):
+            user = User.objects.get(email=user.email)
+        grade_curricular = serializer.save(usuario=user)
+        grade_curricular.pode_alterar.add(user)
+        grade_curricular.pode_compartilhar.add(user)
+        grade_curricular.save()
+
+    def perform_update(self, serializer):
+        user = self.request.user
+        if not isinstance(user, User):
+            user = User.objects.get(email=user.email)
+        grade_curricular = serializer.save(usuario=user)
+        grade_curricular.pode_alterar.add(user)
+        grade_curricular.pode_compartilhar.add(user)
+        grade_curricular.save()
+
+class ComponenteCurricularViewSet(viewsets.ModelViewSet):
+    queryset = ComponenteCurricular.objects.all()
+    serializer_class = ComponenteCurricularSerializer

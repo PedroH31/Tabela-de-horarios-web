@@ -24,13 +24,20 @@ export default function TableCell({ cellKey, tablePeriod, data }) {
 
         const draggedData = JSON.parse(e.dataTransfer.getData("application/json"))
         const { cellKey: oldCellKey, turma, componente, local, tamanho, periodo: oldPeriodo } = draggedData
-
-        console.log("Before Drop:", JSON.stringify(alocation.distribuicao, null, 2));
         
         if (oldCellKey === cellKey && oldPeriodo === tablePeriod) return
-        
 
-        const newDistribuicao = { ...alocation.distribuicao };
+        const newDistribuicao = { ...alocation.distribuicao }
+        
+        const sameLocation = newDistribuicao[cellKey]?.some(
+            (item) => item.local === local && item.periodo === tablePeriod
+        );
+
+        if (sameLocation){
+            alert("Mais de um componente curricular possui o mesmo local")
+
+            return
+        }
 
         // Remove from old cell
         newDistribuicao[oldCellKey] = newDistribuicao[oldCellKey].filter(
@@ -38,16 +45,14 @@ export default function TableCell({ cellKey, tablePeriod, data }) {
         );
     
         // Add to new cell
-        if (!newDistribuicao[cellKey]) newDistribuicao[cellKey] = [];
+        if (!newDistribuicao[cellKey]) newDistribuicao[cellKey] = []
         newDistribuicao[cellKey].push({
           turma,
           componente,
           local,
           tamanho,
           periodo: tablePeriod,
-        });
-
-        console.log("After Drop:", JSON.stringify(newDistribuicao, null, 2));
+        })
         
         setAlocation({ ...alocation, distribuicao: newDistribuicao })
         
@@ -65,10 +70,10 @@ export default function TableCell({ cellKey, tablePeriod, data }) {
         >
             {filteredData.length > 0 ? (
                 filteredData.map((item, index) => (
-                <CurricularComponent 
-                    key={index} 
-                    cellKey={cellKey} 
-                    {...item} />
+                    <CurricularComponent 
+                        key={index} 
+                        cellKey={cellKey} 
+                        {...item} />
                 ))
             ) : (
                 <div className="empty-cell"></div>

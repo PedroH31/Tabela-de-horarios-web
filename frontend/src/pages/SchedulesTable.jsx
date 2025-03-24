@@ -1,38 +1,38 @@
-import { useState, createContext } from "react";
-import { useLocation } from "react-router-dom";
-import TableContainer from "../components/TableContainer.jsx";
-import "../styles/SchedulesTable.css";
+import { useState, createContext } from "react"
+import { useLocation } from "react-router-dom"
+import TableContainer from "../components/TableContainer.jsx"
+import "../styles/SchedulesTable.css"
 
 export const ScheduleContext = createContext();
 
 export default function SchedulesTable() {
-    const location = useLocation();
-    const data = location.state?.data;
-    const [alocation, setAlocation] = useState(data);
-    const [editMode, setEditMode] = useState(false);
+    const location = useLocation()
+    const data = location.state?.data
+    const [alocation, setAlocation] = useState(data)
+    const [editMode, setEditMode] = useState(false)
     const editStyles = editMode 
         ? { border: "2px solid #ffba08" } 
-        : { border: "2px solid black" };
+        : { border: "2px solid black" }
 
-    const daySlots = ["M12", "M34", "M56", "T12", "T34", "T56"];
-    const nightSlots = ["N12", "N34"];
-    const days = ["Seg", "Ter", "Qua", "Qui", "Sex"];
-    const tablePeriods = [1, 2, 3, 4, 5, 6];
-    const daySchedule = {};
-    const nightSchedule = {};
+    const daySlots = ["M12", "M34", "M56", "T12", "T34", "T56"]
+    const nightSlots = ["N12", "N34"]
+    const days = ["Seg", "Ter", "Qua", "Qui", "Sex"]
+    const tablePeriods = [1, 2, 3, 4, 5, 6]
+    const daySchedule = {}
+    const nightSchedule = {}
 
     Object.keys(alocation.distribuicao).forEach((cellKey) => {
-        const cellData = alocation.distribuicao[cellKey];
+        const cellData = alocation.distribuicao[cellKey]
         cellData.forEach((item) => {
             if (cellKey.includes("N")) {
-                if (!nightSchedule[cellKey]) nightSchedule[cellKey] = [];
-                nightSchedule[cellKey].push(item);
+                if (!nightSchedule[cellKey]) nightSchedule[cellKey] = []
+                    nightSchedule[cellKey].push(item);
             } else {
-                if (!daySchedule[cellKey]) daySchedule[cellKey] = [];
-                daySchedule[cellKey].push(item);
+                if (!daySchedule[cellKey]) daySchedule[cellKey] = []
+                    daySchedule[cellKey].push(item)
             }
-        });
-    });
+        })
+    })
 
     function toggleEditMode() {
         setEditMode(prevEditMode => !prevEditMode);
@@ -40,8 +40,8 @@ export default function SchedulesTable() {
 
     const renderTables = (slots, schedule) => {
         const title = slots.length === 2 
-            ? "Proposta - Noturno - 2024.1" 
-            : "Proposta - Diurno - 2024.1";
+            ? "Proposta - Noturno - 2025.1" 
+            : "Proposta - Diurno - 2025.1"
 
         return tablePeriods.map((tablePeriod) => (
             <TableContainer 
