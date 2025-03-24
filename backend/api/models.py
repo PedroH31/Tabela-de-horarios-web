@@ -56,7 +56,6 @@ class GradeCurricular(models.Model):
     def __str__(self):
         return f"{self.nome} ({self.semestre_vigencia})"
 
-# registro dentro da grade
 class ComponenteCurricular(models.Model):
     grade_curricular = models.ForeignKey(GradeCurricular, on_delete=models.CASCADE)
     codigo = models.CharField(max_length=50, unique=True)

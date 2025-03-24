@@ -13,7 +13,6 @@ export default function CurricularComponent(props) {
     return (
         
         <div 
-        // adicionar local da turma 
             className="curricular-component" 
             draggable={editMode}
             onDragStart={(e) => handleDragStart(e, cellKey, turma, componente, local, tamanho, periodo)}

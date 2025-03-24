@@ -22,7 +22,7 @@ const data = [
         ],
         "6_M56": [
           {
-            turma: 1,
+            turma: 2,
             componente: "AMV",
             local: "AUD_A",
             tamanho: 140,
