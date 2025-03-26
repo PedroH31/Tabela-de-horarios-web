@@ -1,3 +1,3 @@
 FROM nginx:1.19.0-alpine
 
-COPY /nginx-setup.conf /etc/nginx/conf.d/default.conf
+COPY /nginx-setup.conf /var/www/html/index.default.conf
