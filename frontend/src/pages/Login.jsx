@@ -11,7 +11,6 @@ function Login() {
         const apiUrl = import.meta.env.REACT_API_URL
 
         if (token) {
-            console.log("Google token:", token)
             try {
                 const backendResponse = await fetch(`http://127.0.0.1:8000/api/google-login/`, {
                     method: "POST",
