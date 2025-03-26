@@ -1,3 +1,7 @@
-FROM nginx:1.19.0-alpine
+FROM nginx:1.27.3-alpine-slim
 
-COPY /nginx-setup.conf /var/www/html/index.default.conf
+COPY /nginx-setup.conf /usr/share/nginx/html/index.default.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
