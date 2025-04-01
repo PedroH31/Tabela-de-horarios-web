@@ -160,7 +160,9 @@ body {
 .toolbar-btn {
     border: 2px solid black;
     border-radius: 4px;
-    background-color: #FFFF
+    background-color: #FFFF;
+    max-width: 3em;
+    padding: .3em .4em;
 }
 
 button {
@@ -174,10 +176,33 @@ button {
 }
 
 .search-bar {
-    padding: 0.5em 2em;
+    padding: 0.5em 1em;
     border-radius: 6px;
     border: 1px solid #bcb8b1;
     margin-right: 0.3em
+}
+
+/* forms */
+
+.grade-form-container {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.grade-form-element {
+    display: flex;
+    align-items: center;
+    gap: .3em;
+}
+
+.grade-form-input {
+    border-radius: 6px;
+    border: 1px solid #bcb8b1;
+    box-shadow: 0 3px 3px rgb(0 0 0 / 0.2);
+    padding: .5em 1em;
 }
 
 /* media queries */

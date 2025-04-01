@@ -5,19 +5,16 @@ from rest_framework import serializers
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "email", "password"]
-        extra_kwargs = {"password": {"write_only": True}}
-
-    def create(self, validated_data):
-        user = User.objects.create_user(**validated_data)
-        return user
+        fields = ["id", "name", "email", "is_active"]
+        read_only_fields = ["is_active"]
 
 class GradeCurricularSerializer(serializers.ModelSerializer):
     class Meta:
         model = GradeCurricular
-        exclude = ['usuario', 'pode_alterar', 'pode_compartilhar']
+        fields = ['id', 'nome', 'descricao', 'semestre_vigencia']
 
 class ComponenteCurricularSerializer(serializers.ModelSerializer):
     class Meta:
         model = ComponenteCurricular
         fields = "__all__"
+        read_only_fields = ['grade_curricular']
