@@ -8,7 +8,7 @@ import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import SchedulesTable from "./pages/SchedulesTable"
-import CurricularComponent from "./components/CurricularComponent"
+import Grades from "./pages/Grades"
 
 function Logout() {
   localStorage.clear()
@@ -36,6 +36,7 @@ function App() {
           
             <Route index element={<Horarios />}/>
             <Route path="/tabela-de-horarios" element={<SchedulesTable />}/>
+            <Route path="/grades" element={<Grades />}/>
             
           </Route>
 

@@ -59,7 +59,7 @@ export default function SchedulesTable() {
         <ScheduleContext.Provider value={{ alocation, setAlocation, editMode }}>
             <div className="toolbar-container row-container">
                 <button onClick={toggleEditMode} className="toolbar-btn" style={editStyles}>
-                    <img src="./src/images/edit-button.png" className="btn-icon" />
+                    <img src="/images/edit-button.png" className="btn-icon" />
                 </button>
             </div>
             <div className="row-container">
